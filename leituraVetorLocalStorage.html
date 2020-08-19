@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Maluqueragem</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        
+        
+        
+           function leVetorDoStorage(key)
+           {
+                var vetorTemp = []
+                var texto = localStorage.getItem(key)
+                var fragmento = ''
+                
+                i = 0
+                do{
+                    if(texto[i] != ',')
+                    {
+                        fragmento += texto[i]
+                    }else
+                    {
+                        vetorTemp[vetorTemp.length] = fragmento
+                        fragmento = ''
+                    }
+                    i++
+                }while(i<texto.length)
+                vetorTemp[vetorTemp.length] = fragmento // para armazenar a última parte, que não termina em ',' 
+
+                return vetorTemp
+           }
+
+           // teste/demonstração de funcionamento/uso
+        //    var vetor = ['me', 'lan', 'ci', 'a']
+        //    localStorage.setItem("testeVetor", vetor)
+        //    var vetorLido = []
+        //    vetorLido = leVetorDoStorage("testeVetor")
+
+        //     for(i=0; i<=vetorLido.length; i++)
+        //     {
+        //         alert(i + ": " + vetorLido[i])
+        //     }
+
+     
+        </script>
+    </body>
+</html>

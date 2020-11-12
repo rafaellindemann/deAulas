@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<html>
+  Digite o CEP: <input type="text" id="cep">      
+  
+  <button onclick = "alerta()" > Obter endereço </button><br><br>
+  Logradouro: <input type="text" id="logradouro" disabled><br><br> 
+  
+  Complemento/número: <input type="text" id="complemento"><br><br>
+ 
+  Bairro: <input type="text" id="bairro" disabled><br><br>  
+  
+  Localidade: <input type="text" id="localidade" disabled><br><br>  
+  
+  UF: <input type="text" id="uf" disabled><br><br>
+
+  <button onclick = "salva()" > salvar </button><br><br>
+
+  <hr>
+  <div id="saida">Registros: </div>
+
+  
+    
+
+
+<script language = "javascript">
+      var cep, url, logradouro, complemento, bairro, localidade, uf
+
+function alerta(){
+    cep = document.getElementById("cep")
+    url = "http://viacep.com.br/ws/"+ cep.value +"/json"
+    logradouro = document.getElementById("logradouro")
+    complemento = document.getElementById("complemento")
+    bairro = document.getElementById("bairro")
+    localidade = document.getElementById("localidade")
+    uf = document.getElementById("uf")
+    
+    
+    fetch(url, {method: 'GET'})
+        .then(response => {
+            response.json()
+                .then(data => {
+                logradouro.value = data.logradouro
+                complemento.value = data.complemento
+                bairro.value = data.bairro
+                localidade.value = data.localidade
+                uf.value = data.uf                
+            })
+    })   
+        .catch(err => {
+            logradouro.value = ""
+            complemento.value = ""
+            bairro.value = ""
+            localidade.value = ""
+            uf.value = ""
+    })   
+  
+function salva()
+{
+    alert(cep.value + logradouro.value + bairro.value + complemento.value + localidade.value)
+}
+
+    }
+    </script>
+    
+</body>
+</html>
